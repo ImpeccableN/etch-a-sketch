@@ -34,5 +34,14 @@ createButton.addEventListener("click", () => {
     createGrid();
 })
 
+const clearButton = document.createElement("button");
+clearButton.textContent = "Clear";
+clearButton.addEventListener("click", () => {
+    gridArray.forEach((box) => {
+        box.setAttribute("style", "background: lightblue");
+    });
+});
+
 body.appendChild(input);
 body.appendChild(createButton);
+body.appendChild(clearButton);
