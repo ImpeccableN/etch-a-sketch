@@ -1,0 +1,18 @@
+:root {
+    --gridBoxHeight: 6.25%;
+}
+
+
+#container {
+    height: 400px;
+    width: 400px;
+    border: 5px solid black;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.gridBox {
+    height: var(--gridBoxHeight);
+    background: lightblue;
+    aspect-ratio: 1 / 1;
+}

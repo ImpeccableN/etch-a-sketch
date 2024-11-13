@@ -1,11 +1,38 @@
 const container = document.querySelector("#container");
+const body = document.body;
+const root = document.querySelector(":root");
+let gridArray = [];
+let rowLength = 16;
 
-container.setAttribute("style", "height: 400px; width: 400px; border: 5px solid black; display: flex; flex-wrap: wrap");
 
-for(let i = 0; i < 16; i++){
-    const gridDiv = document.createElement("div");
-    gridDiv.setAttribute("style", "height: 25%; width: 25%;  background: lightblue")
-    gridDiv.textContent = "green";
-    gridDiv.classList.toggle("gridBox");
-    container.appendChild(gridDiv);
-};
+function createGrid() {
+    for(let i = 0; i < (rowLength*rowLength); i++){
+        const gridDiv = document.createElement("div");
+    // gridDiv.setAttribute("style", "height: boxLength%; width: boxLength%")
+        gridDiv.addEventListener("mouseover", () => {
+            gridDiv.style.background = "black";
+        });
+        gridArray.push(gridDiv);
+        gridDiv.classList.toggle("gridBox");
+        container.appendChild(gridDiv);
+    };
+}
+
+createGrid();
+
+const input = document.createElement("input");
+input.setAttribute("type", "number");
+
+const createButton = document.createElement("button");
+createButton.textContent = "Create Grid";
+createButton.addEventListener("click", () => {
+    rowLength = input.value;
+    gridArray.forEach((box) => {
+        box.remove();
+    })
+    root.style.setProperty('--gridBoxHeight', String(100/rowLength + "%"));
+    createGrid();
+})
+
+body.appendChild(input);
+body.appendChild(createButton);
